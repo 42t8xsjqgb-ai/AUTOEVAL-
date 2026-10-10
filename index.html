@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PERDIRFORMANCE V5 | Sondage Anonyme | AutoEval V5</title>
+    <title>PERDIRFORMANCE V6 | Sondage Anonyme | AutoEval V6</title>
     
     <!-- Chart.js pour les graphiques -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -77,7 +77,7 @@
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-gray-900 tracking-tight">PERDIRFORMANCE</h1>
-                    <p class="text-xs text-gray-500 font-medium">Sondage Anonyme | AutoEval V5</p>
+                    <p class="text-xs text-gray-500 font-medium">Sondage Anonyme | AutoEval V6</p>
                 </div>
             </div>
             
@@ -158,22 +158,36 @@
         </aside>
 
         <main class="flex-1 overflow-y-auto bg-gray-50 p-6 md:p-10 scroll-smooth main-print relative" id="main-content">
-            <div id="upload-section" class="max-w-xl mx-auto bg-white rounded-xl shadow-md border border-gray-200 p-12 text-center mt-10 no-print">
-                <div class="mx-auto h-24 w-24 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <div id="upload-section" class="max-w-2xl mx-auto bg-white rounded-xl shadow-md border border-gray-200 p-10 text-center mt-10 no-print">
+                <div class="mx-auto h-20 w-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 </div>
                 <h3 class="text-2xl font-bold text-gray-900 mb-2">Importation des données</h3>
-                <p class="text-gray-500 mb-8">
-                    Veuillez sélectionner le fichier d'export CSV correspondant à la catégorie :<br>
-                    <span class="font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded mt-2 inline-block" id="current-file-label">ÉLÈVES</span>
-                    <br><span class="text-sm text-orange-600 font-semibold mt-2 inline-block">⚠️ Attention : Le fichier CSV doit être de la forme (% et nombre).</span>
+                <p class="text-gray-500 mb-6">
+                    Sondage actif : <span class="font-bold text-blue-700 bg-blue-50 px-2 py-1 rounded inline-block" id="current-file-label">ÉLÈVES</span>
                 </p>
-                <button onclick="document.getElementById('csvInput').click()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition shadow-sm font-semibold flex items-center justify-center gap-2 mx-auto">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                    Sélectionner le fichier CSV
-                </button>
-                <input type="file" id="csvInput" accept=".csv" class="hidden" onchange="App.csv.handleFileUpload(this)">
-                <p class="text-xs text-gray-400 mt-6">données CSV provenant de pronote.</p>
+
+                <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6 text-left shadow-sm">
+                    <p class="text-sm text-orange-800 font-bold mb-1">⚠️ Message important : Format d'exportation Pronote</p>
+                    <p class="text-xs text-orange-700">Dans PRONOTE, avant de copier vos résultats ou d'exporter votre fichier, vous devez impérativement vous assurer que l'affichage <strong>"% et nombre"</strong> est actif.</p>
+                </div>
+
+                <div class="mb-6 relative">
+                    <textarea id="csvPasteArea" class="w-full h-32 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm font-mono whitespace-pre text-left transition-opacity" placeholder="Collez les données .csv issues de pronote directement dans le champ."></textarea>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button id="btn-import-paste" onclick="App.csv.handlePastedText()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition shadow-sm font-semibold flex items-center justify-center gap-2 flex-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                        Importez les données
+                    </button>
+                    <div class="flex items-center text-gray-400 font-medium text-sm hidden sm:flex">OU</div>
+                    <button id="btn-import-file" onclick="document.getElementById('csvInput').click()" class="bg-white text-blue-600 border border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition shadow-sm font-semibold flex items-center justify-center gap-2 flex-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        Parcourir les fichiers (.csv)
+                    </button>
+                    <input type="file" id="csvInput" accept=".csv" class="hidden" onchange="App.csv.handleFileUpload(this)">
+                </div>
             </div>
 
             <div id="loading" class="hidden absolute inset-0 bg-white bg-opacity-90 flex flex-col items-center justify-center z-50">
@@ -182,16 +196,28 @@
                 <p class="text-gray-500 text-sm">Veuillez patienter pendant la génération des graphiques.</p>
             </div>
 
-            <div id="stats-summary" class="hidden mb-8 bg-white p-5 rounded-lg shadow-sm border border-gray-200 flex flex-col md:flex-row justify-end items-center gap-4 no-print">
-                <button type="button" onclick="document.getElementById('csvInput').click()" class="text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-4 py-2 rounded-md transition cursor-pointer font-medium border border-transparent hover:border-blue-100 flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                    Mettre à jour les données (CSV)
-                </button>
-                <div class="h-6 w-px bg-gray-300 hidden md:block"></div>
-                <button type="button" onclick="App.actions.clearCurrentCategory()" class="text-sm text-red-600 hover:text-red-800 hover:bg-red-50 px-4 py-2 rounded-md transition cursor-pointer font-medium border border-transparent hover:border-red-100 flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                    Réinitialiser cette catégorie
-                </button>
+            <div id="stats-summary" class="hidden mb-8 bg-white p-5 rounded-lg shadow-sm border border-gray-200 flex flex-col gap-4 no-print">
+                <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center w-full gap-4">
+                    <div class="flex-grow w-full relative">
+                         <textarea id="csvUpdatePasteArea" class="w-full h-11 min-h-[44px] p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm font-mono whitespace-pre text-left transition-all duration-200" placeholder="Mise à jour : Collez les nouvelles données CSV ici..." onfocus="this.style.height='120px'" onblur="if(!this.value) this.style.height='44px'"></textarea>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0 flex-wrap justify-end">
+                        <button type="button" onclick="App.csv.handlePastedText('csvUpdatePasteArea')" class="text-sm bg-blue-50 text-blue-700 hover:text-blue-800 hover:bg-blue-100 px-4 py-2.5 rounded-md transition cursor-pointer font-semibold border border-blue-200 flex items-center gap-2 shadow-sm whitespace-nowrap">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                            Mettre à jour (Coller)
+                        </button>
+                        <span class="text-gray-300 hidden sm:inline">|</span>
+                        <button type="button" onclick="document.getElementById('csvInput').click()" class="text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-4 py-2.5 rounded-md transition cursor-pointer font-medium border border-transparent hover:border-blue-100 flex items-center gap-2 whitespace-nowrap">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            Fichier (CSV)
+                        </button>
+                        <span class="text-gray-300 hidden sm:inline">|</span>
+                        <button type="button" onclick="App.actions.clearCurrentCategory()" class="text-sm text-red-600 hover:text-red-800 hover:bg-red-50 px-4 py-2.5 rounded-md transition cursor-pointer font-medium border border-transparent hover:border-red-100 flex items-center gap-2 whitespace-nowrap">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            Réinitialiser
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div id="charts-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-8 print:block print:space-y-8 pb-20"></div>
@@ -303,7 +329,7 @@
 
         const App = {
             state: {
-                version: "5.0",
+                version: "6.0",
                 currentCategory: 'eleves',
                 chartsInstances: {},
                 dataStore: { eleves: null, parents: null, enseignants: null, personnels: null, sondage_pronote: null },
@@ -679,6 +705,33 @@
             },
 
             csv: {
+                handlePastedText: (textareaId = 'csvPasteArea') => {
+                    const el = document.getElementById(textareaId);
+                    const text = el ? el.value : '';
+                    if (!text.trim()) {
+                        App.ui.showToast("Veuillez coller des données dans le champ texte.", "error");
+                        return;
+                    }
+                    App.ui.toggleLoading(true);
+                    Papa.parse(text, {
+                        header: false, skipEmptyLines: true,
+                        complete: function(results) {
+                            try { 
+                                const updateInfo = App.csv.processData(results.data); 
+                                if(updateInfo && updateInfo.isUpdate) {
+                                    App.ui.showToast("Mise à jour intelligente réussie (Titres/Préfs conservés) !", "success");
+                                } else {
+                                    App.ui.showToast("Importation réussie !", "success"); 
+                                }
+                                if(el) el.value = '';
+                                if(el && textareaId === 'csvUpdatePasteArea') el.style.height = '44px';
+                            } 
+                            catch (err) { console.error(err); App.ui.showToast("Erreur d'analyse : " + err.message, "error"); } 
+                            finally { App.ui.toggleLoading(false); }
+                        },
+                        error: function(err) { App.ui.showToast("Lecture impossible : " + err.message, "error"); App.ui.toggleLoading(false); }
+                    });
+                },
                 handleFileUpload: (input) => {
                     const file = input.files[0];
                     if (!file) return;
@@ -822,7 +875,7 @@
             },
 
             storage: {
-                KEY: 'autoEval_data_v5', // Changé pour V5 pour éviter les conflits
+                KEY: 'autoEval_data_v6', // Changé pour V6 pour éviter les conflits
                 save: () => {
                     try {
                         const data = {
@@ -840,7 +893,7 @@
                     if(!raw) return false;
                     try {
                         const data = JSON.parse(raw);
-                        if(data.version >= "5.0") {
+                        if(data.version >= "6.0") {
                             App.state.dataStore = data.dataStore;
                             App.state.currentDomainConfig = data.domainConfig;
                             App.state.customDomainOrders = data.domainOrders || {};
@@ -908,6 +961,7 @@
                         document.getElementById('charts-grid').innerHTML = '';
                         document.getElementById('questions-list').innerHTML = '';
                         document.getElementById('csvInput').value = '';
+                        const ta = document.getElementById('csvPasteArea'); if(ta) ta.value = '';
                     }
                 },
                 resetAllData: () => {
@@ -1070,7 +1124,15 @@
                     
                     const a = document.createElement('a');
                     a.href = URL.createObjectURL(new Blob([JSON.stringify(exportObj)], { type: "application/json" }));
-                    a.download = `sauvegarde_cee_v5_${new Date().toISOString().slice(0,10)}.json`;
+                    
+                    const now = new Date();
+                    const jj = String(now.getDate()).padStart(2, '0');
+                    const mm = String(now.getMonth() + 1).padStart(2, '0');
+                    const aaaa = now.getFullYear();
+                    const hh = String(now.getHours()).padStart(2, '0');
+                    const min = String(now.getMinutes()).padStart(2, '0');
+                    
+                    a.download = `AutoEval_${jj}_${mm}_${aaaa}_${hh}h${min}.json`;
                     a.click();
                     App.ui.showToast("Sauvegardé dans Téléchargements.", "success");
                 },
